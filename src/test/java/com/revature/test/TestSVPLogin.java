@@ -68,7 +68,7 @@ public class TestSVPLogin {
 		go.click();
 	}
 	
-	@Test(dependsOnMethods = {"clickTrainerTab"})
+	@Test(dependsOnMethods = {"clickTrainerTab"}, priority = 3)
 	public void deactivateTrainer() {
 		List<WebElement> trainers = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("mat-list-content")));
@@ -77,7 +77,7 @@ public class TestSVPLogin {
 		buttons.get(1).click();
 	}
 	
-	@Test(dependsOnMethods = {"clickTrainerTab"})
+	@Test(dependsOnMethods = {"clickTrainerTab"}, priority = 4)
 	public void activateTrainer() {
 		JavascriptExecutor js = ((JavascriptExecutor) wd);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -86,7 +86,7 @@ public class TestSVPLogin {
 		buttons.get(1).click();
 	}
 	
-	@Test
+	@Test(priority = 5)
 	public void clickReportTab() {
 		WebElement rTab = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.id("mat-tab-label-0-6")));
@@ -96,7 +96,7 @@ public class TestSVPLogin {
 		Assert.assertEquals(wd.getCurrentUrl(),"https://assignforce-client.cfapps.io/reports");
 	}
 	
-	@Test(dependsOnMethods = {"clickReportTab"})
+	@Test(dependsOnMethods = {"clickReportTab"}, priority = 6)
 	public void testBatchReport() {
 		WebElement reports = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-expansion-panel-header-1\"]")));		
@@ -110,7 +110,7 @@ public class TestSVPLogin {
 		Assert.assertEquals(changed, true);
 	}
 	
-	@Test(dependsOnMethods = {"clickReportTab"})
+	@Test(dependsOnMethods = {"clickReportTab"}, priority = 7)
 	public void testGradSummary() {
 		WebElement sum = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-expansion-panel-header-2\"]")));
