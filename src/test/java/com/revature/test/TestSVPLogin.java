@@ -17,7 +17,7 @@ public class TestSVPLogin {
 	
 	public static WebDriver wd = null;
 	
-	@Test
+	@Test(priority = 0)
 	public void testSVPLogin() {
 		openChrome();
 		wd.get("https://assignforce-client.cfapps.io/login");
@@ -36,7 +36,7 @@ public class TestSVPLogin {
 		Assert.assertEquals(wd.getCurrentUrl(), "https://assignforce-client.cfapps.io/overview");	
 	}
 	
-	@Test(dependsOnMethods = {"testSVPLogin"})
+	@Test(dependsOnMethods = {"testSVPLogin"}, priority = 1)
 	public void clickTrainerTab() {
 		WebElement trainers = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.id("mat-tab-label-0-4")));
@@ -46,22 +46,22 @@ public class TestSVPLogin {
 		Assert.assertEquals(wd.getCurrentUrl(),"https://assignforce-client.cfapps.io/trainers");
 	}
 	
-	@Test(dependsOnMethods = {"clickTrainerTab"})
+	@Test(dependsOnMethods = {"clickTrainerTab"}, priority = 2)
 	public void addTrainer() {
 		WebElement btn = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/app-trainers/div/mat-toolbar-row[1]/mat-toolbar/button")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.mat-icon-button:nth-child(3)")));
 		btn.click();
 		WebElement first = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-input-3\"]")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-input-0")));
 		WebElement last = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-input-4\"]")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-input-1")));
 		WebElement email = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-input-5\"]")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-input-2")));
 		first.sendKeys("joe");
 		last.sendKeys("smith");
 		email.sendKeys("joe@smith.com");
 		WebElement netBox = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-checkbox-5-input\"]")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-checkbox-2-input")));
 		netBox.click();
 		WebElement go = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/div[2]/div/mat-dialog-container/app-trainers-add/form/div[2]/button[1]")));
