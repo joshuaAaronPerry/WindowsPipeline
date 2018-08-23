@@ -86,7 +86,7 @@ public class TestSVPLogin {
 		buttons.get(1).click();
 	}
 	
-	@Test(dependsOnMethods = {"testSVPLogin"})
+	@Test
 	public void clickReportTab() {
 		WebElement rTab = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.id("mat-tab-label-0-6")));
