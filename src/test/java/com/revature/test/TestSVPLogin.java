@@ -110,7 +110,7 @@ public class TestSVPLogin {
 		Assert.assertEquals(changed, true);
 	}
 	
-	@Test
+	@Test(dependsOnMethods = {"clickReportTab"})
 	public void testGradSummary() {
 		WebElement sum = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-expansion-panel-header-2\"]")));
