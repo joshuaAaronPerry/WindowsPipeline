@@ -60,11 +60,11 @@ public class TestSVPLogin {
 		first.sendKeys("joe");
 		last.sendKeys("smith");
 		email.sendKeys("joe@smith.com");
-		WebElement netBox = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-checkbox-2-input")));
-		netBox.click();
+//		WebElement netBox = (new WebDriverWait(wd, 10)).
+//				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-checkbox-2-input")));
+//		netBox.click();
 		WebElement go = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/div[2]/div/mat-dialog-container/app-trainers-add/form/div[2]/button[1]")));
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.mat-button:nth-child(1)")));
 		go.click();
 	}
 	
