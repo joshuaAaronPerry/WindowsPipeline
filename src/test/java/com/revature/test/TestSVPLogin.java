@@ -84,6 +84,7 @@ public class TestSVPLogin {
 		List<WebElement> buttons = (new WebDriverWait(wd, 10)).
 				until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("mac-icon-button")));
 		buttons.get(1).click();
+		js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
 	}
 	
 	@Test(priority = 5)
@@ -99,14 +100,15 @@ public class TestSVPLogin {
 	@Test(dependsOnMethods = {"clickReportTab"}, priority = 6)
 	public void testBatchReport() {
 		WebElement reports = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"mat-expansion-panel-header-1\"]")));		
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mat-expansion-panel-header-1 > span:nth-child(1) > mat-panel-title:nth-child(1)")));		
 		WebElement change = (new WebDriverWait(wd, 10)).
-				until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"cdk-accordion-child-8\"]")));
+				until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#cdk-accordion-child-1 > div:nth-child(1)")));
 		String visBefore = change.getCssValue("visibility");
 		reports.click();
 		String visAfter = change.getCssValue("visibility");
 		boolean changed = (visBefore == "hidden" && visAfter == "visible") ||
 				(visBefore == "visible" && visAfter == "hidden");
+		reports.click();
 		Assert.assertEquals(changed, true);
 	}
 	
