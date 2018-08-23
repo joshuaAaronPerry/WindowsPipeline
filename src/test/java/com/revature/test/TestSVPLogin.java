@@ -9,11 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class TestSVPLogin {
 	
 	public static WebDriver wd = null;
 	
+	@Test
 	public void testSVPLogin() {
 		openChrome();
 		wd.get("https://assignforce-client.cfapps.io/login");
@@ -31,6 +33,7 @@ public class TestSVPLogin {
 		Assert.assertEquals(wd.getCurrentUrl(), "https://assignforce-client.cfapps.io/overview");	}
 
 	public static void openChrome() {
+		  System.out.println("Here");
 		  File f = new File("src/main/resources/chromedriver.exe");
 		  System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		  //ChromeOptions options = new ChromeOptions();
