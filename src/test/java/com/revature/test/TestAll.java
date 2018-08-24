@@ -252,7 +252,12 @@ public class TestAll {
 	
 	@Test(priority = 13)
 	public void testMoveToLocationBar() {
-		moveToLocationTab();
+		WebElement locations = (new WebDriverWait(wd, 10)).
+				until(ExpectedConditions.elementToBeClickable(By.id("mat-tab-label-0-2")));		
+		locations.click();
+		(new WebDriverWait(wd, 10)).
+		until(ExpectedConditions.urlMatches("https://assignforce-client.cfapps.io/locations"));
+		Assert.assertEquals(wd.getCurrentUrl(),"https://assignforce-client.cfapps.io/locations");
 	}
 
 	@Test(priority = 14)
@@ -356,26 +361,6 @@ public class TestAll {
 		wd.quit();
 }
 	
-	public static void moveToLocationTab() {
-
-		boolean expand = true;
-		while (expand) {
-			try {
-				Thread.sleep(500);
-				wd.findElement(By.id("mat-tab-label-0-2")).click();
-				System.out.println("Finally moved!");
-				expand = false;
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Nope");
-			} catch (Exception e) {
-				System.out.println("Naw");
-
-			}
-		}
-
-	}
-
 	public static void clickLocationBar() {
 
 		boolean expand = true;
