@@ -49,14 +49,12 @@ public class TestAll {
 	
 	@Test(priority = 2)
 	public void testProfileBtn() {
-		WebElement btn = (new WebDriverWait(wd, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".mat-icon-button")));
-		String contentBefore = wd.findElement(By.id("profilecontent")).getAttribute("innerhtml");
+		WebElement btn = (new WebDriverWait(wd, 10)).
+				until(ExpectedConditions.elementToBeClickable(By.cssSelector(".mat-icon-button")));
+		WebElement div =(new WebDriverWait(wd, 10)).
+				until(ExpectedConditions.elementToBeClickable(By.id("profilecontent")));
+		String contentBefore = div.getAttribute("innerhtml");
 		btn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		String contentAfter = wd.findElement(By.id("profilecontent")).getAttribute("innerhtml");
 		boolean change = contentBefore.equals(contentAfter);
 		Assert.assertEquals(change, true);
